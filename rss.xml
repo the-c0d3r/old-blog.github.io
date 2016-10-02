@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Code-Lab]]></title><description><![CDATA[Thoughts, stories and ideas.]]></description><link>http://p.umputun.com/</link><generator>Ghost 0.8</generator><lastBuildDate>Sun, 02 Oct 2016 12:03:57 GMT</lastBuildDate><atom:link href="http://p.umputun.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Ubuntu Hiding Open Windows]]></title><description><![CDATA[<p>ကျွန်တော်က laptop သုံးရင် window အများကြီးဖွင့်ထားတတ်ပါတယ်။ နောက်ပိုင်းတော့ Workspace ခွဲထားပြီး workspace တစ်ခုကို သူ့သက်ဆိုင်ရာ Window တွေပဲဖွင့်တော့တယ်။ ဒါပေမယ့် Ubuntu မှာက Workspace မတူလဲ</p>]]></description><link>http://p.umputun.com/ubuntu-hiding-open-windows/</link><guid isPermaLink="false">064f6149-7519-4c23-bd3a-418d32a53071</guid><dc:creator><![CDATA[zerouplink]]></dc:creator><pubDate>Sun, 02 Oct 2016 12:03:47 GMT</pubDate><content:encoded><![CDATA[<p>ကျွန်တော်က laptop သုံးရင် window အများကြီးဖွင့်ထားတတ်ပါတယ်။ နောက်ပိုင်းတော့ Workspace ခွဲထားပြီး workspace တစ်ခုကို သူ့သက်ဆိုင်ရာ Window တွေပဲဖွင့်တော့တယ်။ ဒါပေမယ့် Ubuntu မှာက Workspace မတူလဲ Unity Launcher မှာ အဲဒီ icon တွေကပေါ်နေတုန်းပဲ။ ကြာတော့ ဝင်းဒိုးတွေဖွင့်ထားတာများတော့ ဘားတစ်ခုလုံးပြည့်ပြီး ရှုတ်ကုန်တယ်။ ကျွန်တော် Google ခေါက်ပြီးရှာတော့ သူများ Launchpad ရဲ့ bugs section မှာသူများ suggestion လုပ်ထားတာလဲတွေ့ရပါတယ်။ တစ်ကယ်တော့လဲ အဲဒါကမဖြစ်သင့်တာပါ၊ workspace ချိန်းတယ်ဆိုကတည်းက ဝင်းဒိုးရှုပ်မှာဆိုးလို့ ရှင်းအောင်လုပ်တာပါ။</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Code-Lab]]></title><description><![CDATA[Thoughts, stories and ideas.]]></description><link>http://p.umputun.com/</link><generator>Ghost 0.8</generator><lastBuildDate>Sun, 02 Oct 2016 12:34:38 GMT</lastBuildDate><atom:link href="http://p.umputun.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Pickle VS Json]]></title><description><![CDATA[<h5 id="jsonjavascriptobjectnotation">JSON (JavaScript Object Notation)</h5>
+
+<p>JSON is a file format, and a markup language. First write the data into a <em>list</em> or <em>dictionary</em> (Note : Python's <strong>Dictionary</strong> datatype is equivalent of Javascript's Object notation). And it can be written into a json file with the similar formats</p>
+
+<p>Python have <code>json</code> module and</p>]]></description><link>http://p.umputun.com/pickle-vs-json/</link><guid isPermaLink="false">57423497-0275-44d9-89ba-93371b610186</guid><category><![CDATA[Python]]></category><dc:creator><![CDATA[zerouplink]]></dc:creator><pubDate>Sun, 02 Oct 2016 12:34:28 GMT</pubDate><content:encoded><![CDATA[<h5 id="jsonjavascriptobjectnotation">JSON (JavaScript Object Notation)</h5>
+
+<p>JSON is a file format, and a markup language. First write the data into a <em>list</em> or <em>dictionary</em> (Note : Python's <strong>Dictionary</strong> datatype is equivalent of Javascript's Object notation). And it can be written into a json file with the similar formats</p>
+
+<p>Python have <code>json</code> module and <code>simplejson</code> module. </p>
+
+<h5 id="jsonmodule">JSON module</h5>
+
+<ul>
+<li><p><code>dumps</code> or <code>dump</code></p>
+
+<ul><li>This will dump the dict/list object into a JSON object so it can be written to file</li></ul></li>
+<li><p><code>loads</code> or <code>load</code></p>
+
+<ul><li>This converts a JSON object from file to a python object (dict/list)</li></ul></li>
+</ul>
+
+<p><code>dumps</code>, <code>loads</code> is for processing on the string object itself. <code>dump</code>, <code>load</code> is for processing with file objects.</p>
+
+<hr>
+
+<h5 id="codeexamples">Code examples</h5>
+
+<p>Reading JSON file to dict  </p>
+
+<pre><code class="language-python">import json
+
+infile = open("file.json", 'r')  
+jsondict = json.load(infile)  
+print(jsondict)  
+# The jsondict is a dictionary object
+</code></pre>
+
+<p>Writing Dict to JSON file  </p>
+
+<pre><code class="language-python">import json
+
+mydict = {  
+    'name': 'zero',
+    'age': 100,
+    'skills': ['programmer', 'magician']
+}
+
+with open("file.json", "w") as outfile:  
+    json.dump(mydict, outfile, indent=4)
+    # indent = 4 is for indenting the json aka pretty printing
+</code></pre>]]></content:encoded></item><item><title><![CDATA[Ubuntu Hiding Open Windows]]></title><description><![CDATA[<p>ကျွန်တော်က laptop သုံးရင် window အများကြီးဖွင့်ထားတတ်ပါတယ်။ နောက်ပိုင်းတော့ Workspace ခွဲထားပြီး workspace တစ်ခုကို သူ့သက်ဆိုင်ရာ Window တွေပဲဖွင့်တော့တယ်။ ဒါပေမယ့် Ubuntu မှာက Workspace မတူလဲ</p>]]></description><link>http://p.umputun.com/ubuntu-hiding-open-windows/</link><guid isPermaLink="false">064f6149-7519-4c23-bd3a-418d32a53071</guid><dc:creator><![CDATA[zerouplink]]></dc:creator><pubDate>Sun, 02 Oct 2016 12:03:47 GMT</pubDate><content:encoded><![CDATA[<p>ကျွန်တော်က laptop သုံးရင် window အများကြီးဖွင့်ထားတတ်ပါတယ်။ နောက်ပိုင်းတော့ Workspace ခွဲထားပြီး workspace တစ်ခုကို သူ့သက်ဆိုင်ရာ Window တွေပဲဖွင့်တော့တယ်။ ဒါပေမယ့် Ubuntu မှာက Workspace မတူလဲ Unity Launcher မှာ အဲဒီ icon တွေကပေါ်နေတုန်းပဲ။ ကြာတော့ ဝင်းဒိုးတွေဖွင့်ထားတာများတော့ ဘားတစ်ခုလုံးပြည့်ပြီး ရှုတ်ကုန်တယ်။ ကျွန်တော် Google ခေါက်ပြီးရှာတော့ သူများ Launchpad ရဲ့ bugs section မှာသူများ suggestion လုပ်ထားတာလဲတွေ့ရပါတယ်။ တစ်ကယ်တော့လဲ အဲဒါကမဖြစ်သင့်တာပါ၊ workspace ချိန်းတယ်ဆိုကတည်းက ဝင်းဒိုးရှုပ်မှာဆိုးလို့ ရှင်းအောင်လုပ်တာပါ။</p>
 
 <p>ဒါနဲ့ StackOverFlow ကနေ အောက်က answer ကိုသွားတွေ့ပါတယ်။
 <a href="http://askubuntu.com/questions/305962/setting-to-only-show-applications-of-current-workspace-in-launcher/695606#695606">Stackoverflow answer</a></p>

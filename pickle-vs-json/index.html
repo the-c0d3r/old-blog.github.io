@@ -1,0 +1,209 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Pickle VS Json</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=902870413f">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://p.umputun.com/pickle-vs-json/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Code-Lab">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Pickle VS Json">
+    <meta property="og:description" content="JSON (JavaScript Object Notation) JSON is a file format, and a markup language. First write the data into a list or dictionary (Note : Python's Dictionary datatype is equivalent of Javascript's Object notation). And it can be written into a json file with the similar formats Python have json module and">
+    <meta property="og:url" content="http://p.umputun.com/pickle-vs-json/">
+    <meta property="article:published_time" content="2016-10-02T12:34:28.704Z">
+    <meta property="article:modified_time" content="2016-10-02T12:34:28.700Z">
+    <meta property="article:tag" content="Python">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Pickle VS Json">
+    <meta name="twitter:description" content="JSON (JavaScript Object Notation) JSON is a file format, and a markup language. First write the data into a list or dictionary (Note : Python's Dictionary datatype is equivalent of Javascript's Object notation). And it can be written into a json file with the similar formats Python have json module and">
+    <meta name="twitter:url" content="http://p.umputun.com/pickle-vs-json/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="zerouplink">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Python">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Code-Lab",
+        "logo": "http://p.umputun.com/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "zerouplink",
+        "url": "http://p.umputun.com/author/zerouplink/",
+        "sameAs": []
+    },
+    "headline": "Pickle VS Json",
+    "url": "http://p.umputun.com/pickle-vs-json/",
+    "datePublished": "2016-10-02T12:34:28.704Z",
+    "dateModified": "2016-10-02T12:34:28.700Z",
+    "keywords": "Python",
+    "description": "JSON (JavaScript Object Notation) JSON is a file format, and a markup language. First write the data into a list or dictionary (Note : Python&#x27;s Dictionary datatype is equivalent of Javascript&#x27;s Object notation). And it can be written into a json file with the similar formats Python have json module and"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.8">
+    <link rel="alternate" type="application/rss+xml" title="Code-Lab" href="http://p.umputun.com/rss/">
+</head>
+<body class="post-template tag-python nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://p.umputun.com/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://p.umputun.com/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-python">
+
+        <header class="post-header">
+            <h1 class="post-title">Pickle VS Json</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-10-02">02 October 2016</time>  on <a href="../tag/python/">Python</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <h5 id="jsonjavascriptobjectnotation">JSON (JavaScript Object Notation)</h5>
+
+<p>JSON is a file format, and a markup language. First write the data into a <em>list</em> or <em>dictionary</em> (Note : Python's <strong>Dictionary</strong> datatype is equivalent of Javascript's Object notation). And it can be written into a json file with the similar formats</p>
+
+<p>Python have <code>json</code> module and <code>simplejson</code> module. </p>
+
+<h5 id="jsonmodule">JSON module</h5>
+
+<ul>
+<li><p><code>dumps</code> or <code>dump</code></p>
+
+<ul><li>This will dump the dict/list object into a JSON object so it can be written to file</li></ul></li>
+<li><p><code>loads</code> or <code>load</code></p>
+
+<ul><li>This converts a JSON object from file to a python object (dict/list)</li></ul></li>
+</ul>
+
+<p><code>dumps</code>, <code>loads</code> is for processing on the string object itself. <code>dump</code>, <code>load</code> is for processing with file objects.</p>
+
+<hr>
+
+<h5 id="codeexamples">Code examples</h5>
+
+<p>Reading JSON file to dict  </p>
+
+<pre><code class="language-python">import json
+
+infile = open("file.json", 'r')  
+jsondict = json.load(infile)  
+print(jsondict)  
+# The jsondict is a dictionary object
+</code></pre>
+
+<p>Writing Dict to JSON file  </p>
+
+<pre><code class="language-python">import json
+
+mydict = {  
+    'name': 'zero',
+    'age': 100,
+    'skills': ['programmer', 'magician']
+}
+
+with open("file.json", "w") as outfile:  
+    json.dump(mydict, outfile, indent=4)
+    # indent = 4 is for indenting the json aka pretty printing
+</code></pre>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/zerouplink/">zerouplink</a></h4>
+
+                    <p>Read <a href="../author/zerouplink/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Pickle%20VS%20Json&amp;url=http://p.umputun.com/pickle-vs-json/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://p.umputun.com/pickle-vs-json/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://p.umputun.com/pickle-vs-json/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev no-cover" href="../ubuntu-hiding-open-windows/">
+        <section class="post">
+            <h2>Ubuntu Hiding Open Windows</h2>
+            <p>ကျွန်တော်က laptop သုံးရင် window အများကြီးဖွင့်ထားတတ်ပါတယ်။ နောက်ပိ…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://p.umputun.com">Code-Lab</a> © 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=902870413f"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=902870413f"></script>
+
+</body>
