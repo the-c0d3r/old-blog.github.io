@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Code-Lab]]></title><description><![CDATA[Thoughts, stories and ideas.]]></description><link>http://p.umputun.com/</link><generator>Ghost 0.8</generator><lastBuildDate>Sun, 02 Oct 2016 11:58:19 GMT</lastBuildDate><atom:link href="http://p.umputun.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[SSH Port Forwarding]]></title><description><![CDATA[<h4 id="whyportforwardwithssh">Why Port Forward with ssh?</h4>
+
+<p>There might be a time when you are inside a LAN and you have no access/permission to edit/change router configuration. This is where SSH Port forwarding comes in. It is also known as SSH Tunneling, as it can tunnel all traffic through SSH</p>]]></description><link>http://p.umputun.com/ssh-port-forwarding/</link><guid isPermaLink="false">a3b5cf1d-a478-415e-8219-329c82e99471</guid><dc:creator><![CDATA[zerouplink]]></dc:creator><pubDate>Sun, 02 Oct 2016 11:58:10 GMT</pubDate><content:encoded><![CDATA[<h4 id="whyportforwardwithssh">Why Port Forward with ssh?</h4>
+
+<p>There might be a time when you are inside a LAN and you have no access/permission to edit/change router configuration. This is where SSH Port forwarding comes in. It is also known as SSH Tunneling, as it can tunnel all traffic through SSH connection.</p>
+
+<h4 id="whatisssh">What is SSH?</h4>
+
+<p>Seriously? Ok, it stands for <strong>S</strong>ecure <strong>SH</strong>ell which works on <strong>TCP Port 22</strong> <br>
+More about it <a href="https://en.wikipedia.org/wiki/Secure_Shell">here</a>.</p>
+
+<hr>
+
+<p>There are 2 types of port forwarding</p>
+
+<ol>
+<li><strong>Local</strong> Port Forwarding  </li>
+<li><strong>Remote</strong> Port Forwarding</li>
+</ol>
+
+<hr>
+
+<h3 id="localportforwarding">Local Port Forwarding</h3>
+
+<p>When you connect to the local host's binded port, it will forward your connection to the predefined host's port. </p>
+
+<pre><code>ssh -L 9000:localhost:22 r00t@b0x.xxx
+</code></pre>
+
+<p>This is done by <code>-L</code> Switch, which means Local bind. </p>
+
+<pre><code>9000 = local port
+22 = remote port to forward
+r00t = username
+b0x.xxx = hostname
+</code></pre>
+
+<p>When connecting to the local host's port 9000, it will forward the connection to the remote host <code>b0x.xxx:22</code>.</p>
+
+<pre><code>ssh r00t@localhost -p 9000
+</code></pre>
+
+<hr>
+
+<h3 id="remoteportforwarding">Remote Port Forwarding</h3>
+
+<p>This is quite the opposite of <strong>Local Port Forwarding</strong>. When the connection on specified port is received on remote host, it will forward the connection to the local host's specified port. </p>
+
+<pre><code>ssh -R 9000:localhost:22 r00t@b0x.xxx`
+</code></pre>
+
+<p><code>-R</code> parameter is used here which denotes "Remote" port forwarding</p>
+
+<pre><code>9000 = local port
+22 = remote port
+r00t = username
+b0x.xxx = hostname
+</code></pre>
+
+<p>This works in a opposite way of Local port forwarding. When you do a <code>ssh r00t@b0x.xxx -p 9000</code> you will be forwarded to your localhost. You can now log in to your local host without doing port forwarding from your router. </p>
+
+<hr>
+
+<p>Like I mentioned from the start, this is also called <strong>SSH Tunneling</strong> which means it can tunnel any protocol, any services, not just SSH. This is particularly useful in cases when you are behind a <strong>firewall</strong> or <strong>NAT</strong> router and they blocked the ports.</p>]]></content:encoded></item><item><title><![CDATA[Welcome to Ghost]]></title><description><![CDATA[<p>You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at <code>&lt;your blog URL&gt;/ghost/</code>. When you arrive, you can select this post from a list</p>]]></description><link>http://p.umputun.com/welcome-to-ghost/</link><guid isPermaLink="false">159a1c48-115a-4cac-889c-91143ea40359</guid><category><![CDATA[Getting Started]]></category><dc:creator><![CDATA[zerouplink]]></dc:creator><pubDate>Sun, 02 Oct 2016 11:26:35 GMT</pubDate><content:encoded><![CDATA[<p>You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at <code>&lt;your blog URL&gt;/ghost/</code>. When you arrive, you can select this post from a list on the left and see a preview of it on the right. Click the little pencil icon at the top of the preview to edit this post and read the next section!</p>
+
+<h2 id="gettingstarted">Getting Started</h2>
+
+<p>Ghost uses something called Markdown for writing. Essentially, it's a shorthand way to manage your post formatting as you write!</p>
+
+<p>Writing in Markdown is really easy. In the left hand panel of Ghost, you simply write as you normally would. Where appropriate, you can use <em>shortcuts</em> to <strong>style</strong> your content. For example, a list:</p>
+
+<ul>
+<li>Item number one</li>
+<li>Item number two
+<ul><li>A nested item</li></ul></li>
+<li>A final item</li>
+</ul>
+
+<p>or with numbers!</p>
+
+<ol>
+<li>Remember to buy some milk  </li>
+<li>Drink the milk  </li>
+<li>Tweet that I remembered to buy the milk, and drank it</li>
+</ol>
+
+<h3 id="links">Links</h3>
+
+<p>Want to link to a source? No problem. If you paste in a URL, like <a href="http://ghost.org">http://ghost.org</a> - it'll automatically be linked up. But if you want to customise your anchor text, you can do that too! Here's a link to <a href="http://ghost.org">the Ghost website</a>. Neat.</p>
+
+<h3 id="whataboutimages">What about Images?</h3>
+
+<p>Images work too! Already know the URL of the image you want to include in your article? Simply paste it in like this to make it show up:</p>
+
+<p><img src="https://ghost.org/images/ghost.png" alt="The Ghost Logo"></p>
+
+<p>Not sure which image you want to use yet? That's ok too. Leave yourself a descriptive placeholder and keep writing. Come back later and drag and drop the image in to upload:</p>
+
+<h3 id="quoting">Quoting</h3>
+
+<p>Sometimes a link isn't enough, you want to quote someone on what they've said. Perhaps you've started using a new blogging platform and feel the sudden urge to share their slogan? A quote might be just the way to do it!</p>
+
+<blockquote>
+  <p>Ghost - Just a blogging platform</p>
+</blockquote>
+
+<h3 id="workingwithcode">Working with Code</h3>
+
+<p>Got a streak of geek? We've got you covered there, too. You can write inline <code>&lt;code&gt;</code> blocks really easily with back ticks. Want to show off something more comprehensive? 4 spaces of indentation gets you there.</p>
+
+<pre><code>.awesome-thing {
+    display: block;
+    width: 100%;
+}
+</code></pre>
+
+<h3 id="readyforabreak">Ready for a Break?</h3>
+
+<p>Throw 3 or more dashes down on any new line and you've got yourself a fancy new divider. Aw yeah.</p>
+
+<hr>
+
+<h3 id="advancedusage">Advanced Usage</h3>
+
+<p>There's one fantastic secret about Markdown. If you want, you can write plain old HTML and it'll still work! Very flexible.</p>
+
+<p><input type="text" placeholder="I'm an input field!"></p>
+
+<p>That should be enough to get you started. Have fun - and let us know what you think :)</p>]]></content:encoded></item></channel></rss>
