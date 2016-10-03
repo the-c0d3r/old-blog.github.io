@@ -1,3 +1,3 @@
 User-agent: *
-Sitemap: http://p.umputun.com/sitemap.xml
+Sitemap: http://the-c0d3r.github.io/sitemap.xml
 Disallow: /ghost/
