@@ -1,4 +1,173 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Code-Lab]]></title><description><![CDATA[Programming, Python, Raspberry Pi, Linux]]></description><link>http://p.umputun.com/</link><generator>Ghost 0.8</generator><lastBuildDate>Mon, 03 Oct 2016 00:49:40 GMT</lastBuildDate><atom:link href="http://p.umputun.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Pickle VS Json]]></title><description><![CDATA[<h5 id="jsonjavascriptobjectnotation">JSON (JavaScript Object Notation)</h5>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Code-Lab]]></title><description><![CDATA[Programming, Python, Raspberry Pi, Linux]]></description><link>http://p.umputun.com/</link><generator>Ghost 0.8</generator><lastBuildDate>Mon, 03 Oct 2016 01:07:08 GMT</lastBuildDate><atom:link href="http://p.umputun.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Python Yield & Generators & Lambda]]></title><description><![CDATA[Generators, python, yield, lambda]]></description><link>http://p.umputun.com/python-yield-generators-lambda/</link><guid isPermaLink="false">ddacd2c9-f0cc-4892-bf98-2dbc6b2142c2</guid><category><![CDATA[Python]]></category><category><![CDATA[Programming]]></category><dc:creator><![CDATA[zerouplink]]></dc:creator><pubDate>Mon, 03 Oct 2016 01:04:10 GMT</pubDate><content:encoded><![CDATA[<p>Generators, lambda တွေနဲ့ yield တွေကတော့ နည်းနည်း advance ဖြစ်တဲ့ subtopic တွေဖြစ်သွားပါပြီ။ ဒီတော့ python basic ရသွားမှ နားလည်ရလွယ်မှာပါ။ Generator တွေဆိုတာ python object တစ်ခုဖြစ်ပြီး yield ကတော့ generator တွေနဲ့ တွဲသုံးလေ့ရှိတဲ့ statement တစ်မျိုးပါ။</p>
+
+<h3 id="generators">Generators</h3>
+
+<p>Generators တွေကို အလွယ်ပြောရရင် item လေးတွေထုတ်ပေးဖို့ object တစ်မျိုးပါပဲ။ Generator တွေကို အသုံးပြုမယ်ဆိုရင် Generator function ရေးရပါမယ်။ Generator function ကတော့ တစ်ခြားမဟုတ်ပါဘူး။ ဘယ် def မဆို yield statement ပါလို့ရှိရင် အဲဒါ generator function လို့ခေါ်တာပါပဲ။ <br>
+နောက်ပြီးတော့ အဲဒီလို function တွေက တစ်ခါ Generator iterator ဒါမှမဟုတ် တခြားနာမည်တစ်ခုဆိုရင် generator object တွေထုတ်ပေးပါတယ်။ (Iterator ကိုတော့ သိပြီးပြီလို့ ထင်ပါတယ်။ Basic မှာအဲဒါတွေအရမ်းသုံးရတယ်လေ။) Generator ပစ္စည်းတွေမှန်သမျှက next() ဆိုတဲ့ built-in function ပါပါတယ်။ အဲဒီကောင်လေးတွေကတော့ Generator တွေထဲကထုတ်ပေးတဲ့ နောက်ထပ် item တစ်ခုကို လှမ်းခေါ်လိုက်တဲ့သဘောပါပဲ။</p>
+
+<p>Example တွေကို ကြည့်လိုက်ရင် သဘောပေါက်ပါလိမ့်မယ်။ <br>
+အရင်ဆုံး Generator function တစ်ခုတည်ဆောက်ပါမယ်။</p>
+
+<pre><code>def simple_generator():  
+    for i in range(1,11):
+        yield i
+</code></pre>
+
+<p>ဒါကတော့ function define လုပ်ပြီးသွားပါပြီ။ ဒါဆို ပြောစရာဖြစ်လာတယ်။ 1 ကနေ 10 အထိ generate လုပ်တာများ အောက်ကလိုလဲရတာပဲဥစ္စာ။</p>
+
+<p><code>numList = [i for i in range(1,11)]</code></p>
+
+<p>အမေး: ဘာလို့များ function တစ်ခုထပ်ဆောက်ပြီး လုပ်ရတာလဲ?</p>
+
+<p>အဖြေ: အဲဒီလို numList Define လုပ်လိုက်ရင် Variable က RAM မှာ 1 ကနေ 10 အထိသွားသိမ်းပါလိမ့်မယ်။ နံပတ်နည်းရင် ပြဿနာမရှိပေမယ့် နံပတ်က အရမ်းကြီးသွားရင် RAM မှာအများကြီးသွားစားမယ်လေ။</p>
+
+<p>အမေး: ဪ ဒါဆို Generator object ကရော RAM မစားဘူးပေါ့?</p>
+
+<p>အဖြေ: မစားတာမဟုတ်ပါဘူး။ စားပါတယ်။ ဒါပေမယ့် အရမ်းနည်းတာပေါ့။ အောက်က Example ကိုကြည့်ပါ။</p>
+
+<p><code>numList = [i for i in range(1000) if i%2 == 0]</code></p>
+
+<p>ဒီလိုလုပ်ရင် CPU ကတစ်ခါထဲ 1 ကနေ 1000 အထိ တစ်ခုချင်းစီသွားပြီး စုံကိန်းဖြစ်မဖြစ်ကို တန်းပြီး တွက်ချက်ပြီး သိမ်းရပါမယ်။ Generator အားသာချက်က လိုအပ်မှပဲ တွက်ချက်ပြီး ထုတ်ပေးလိုက်တာပဲ။ အဲဒီကုဒ်ကို Generator နဲ့ရေးကြည့်မယ်။</p>
+
+<pre><code>def gen_even_num():  
+    for i in range(1000):
+        if i%2 == 0:
+            yield i
+
+num = gen_even_num()  
+num.next()  
+num.next()  
+</code></pre>
+
+<p>ဒီလိုဆိုရင် သူက <code>num.next()</code> ခေါ်လိုက်မှ function ကို execute လုပ်ပြီး စုံကိန်းကို ပြန် yield လုပ်ပေးတာပါ။ <code>num.next()</code> က python 2.x ဗားရှင်းမှာ ရေးနည်းပါ။ ဗားရှင်း 3 မှာဆိုရင် <code>next(num)</code> ဆိုပြီး လုပ်ရပါတယ်။</p>
+
+<p>နောက်ပြီး generator function နဲ့ သာမှန် function မတူတာတစ်ချက်က သာမှန် function ဆိုရင် function ကို execute လုပ်ပြီးရင် သူ့အထဲမှာရှိတဲ့ local variable ရဲ့တန်ဖိုးတွေအားလုံးကို မေ့ပစ်လိုက်တယ်။ ဒါပေမယ့် generator function တွေမှာတော့ အဲဒီလိုမဟုတ်ဘူး။ သူက မှတ်ထားသေးတယ်။ အဲဒါကြောင့် ဒီလို next() နဲ့ခေါ်လို့ရတာပါ။</p>
+
+<p>အောက်မှာတော့ memory profile လုပ်ထားတာကို ပြပါမယ်။
+<img src="http://i.imgur.com/FqYOXrS.png" alt=""></p>
+
+<h5 id="normalfunctioncode">Normal function code</h5>
+
+<pre><code>from memory_profiler import profile  
+import time
+
+@profile
+def my_func():  
+    num = [i for i in range(100000) if i%2 == 0]
+
+if __name__ == "__main__":  
+    start = time.time()
+    my_func()
+    end = time.time()
+    print"Duration : %f" % (float(end)-float(start))
+</code></pre>
+
+<h5 id="generatorfunctioncode">Generator function code</h5>
+
+<pre><code>from memory_profiler import profile  
+import time
+
+
+def generator_func():  
+    for i in range(100000):
+        if i%2 == 0:
+            yield i
+
+@profile
+def main():  
+    num = []
+    for value in generator_func():
+        num.append(value)
+
+if __name__ == "__main__":  
+    start = time.time()
+    main()
+    end = time.time()
+    print"Duration : %f" % (float(end)-float(start))
+</code></pre>
+
+<p>Memory ကွာဟချက်လေးနဲ့ duration ကွာဟချက်လေးက သိပ်တော့မကွာပါဘူး။ ဒါပေမယ့် generator က လိုမှသုံးတဲ့နေရာမှာ အသုံးတည့်တယ်။ နောက်ပြီး item ဘယ်လောက်လိုလဲ အတိအကျမသိတဲ့ case မှာဆို လိုသလောက် ထုတ်သုံးယုံပဲ။</p>
+
+<h3 id="lambda">Lambda (λ)</h3>
+
+<p>Lambda ဆိုတာ Radioactive Decay ကိုတွက်ချက်ရင်သုံးတဲ့ constant မဟုတ်ပါဘူး။ python မှာဆို တစ်ခြား အဓိပ္ပာယ်ရှိပါတယ်။ lambda ဆိုတာ mini-function လေးတွေ ဒါမှမဟုတ် function on-the-fly / on-the-run ပါ။ code statement လေးတွေကလဲ တစ်ကြောင်းထဲရှိသောအခါမျိုးမှာ ကိုယ်ကလဲ နောက်ထပ်သုံးချင်တယ်၊ ဒါပေမယ့် def လဲမရေးချင်ဘူး။ ဒါဆို lambda သုံးလို့ရပါပြီ။</p>
+
+<p><code>&gt;&gt;&gt; def f(x): return x**2</code></p>
+
+<p>f ဆိုတဲ့ function ကခေါ်လိုက်ရင် ထည့်လိုက်တဲ့ argument ကို power 2 တင်ပြီး ပြန်ထုတ်ပေးမှာပါ။</p>
+
+<pre><code>&gt;&gt;&gt; print f(8)
+64  
+</code></pre>
+
+<p>ဒါဆို lambda နဲ့ရေးကြည့်ရအောင်။ အရင်ဆုံး lambda မှာ return statement မလိုပါဘူး။ သူက နဂိုထဲက auto return လုပ်ပါတယ်။ ဒါသိရင် စရေးလို့ရပါပြီ။</p>
+
+<p><code>&gt;&gt;&gt; g = lambda x: x**2</code></p>
+
+<p>code ကိုခွဲခြမ်းကြည့်ရင် g ဆိုတာ variable define လုပ်တာနဲ့ အတော်ကိုတူပါတယ်။ ဒါပေမယ့် lambda ပါနေတဲ့အတွက် သူ့ကို variable လို့သတ်မှတ်လို့မရပါဘူး။ ပြန်ခေါ်မယ်ဆိုရင် function ခေါ်တဲ့အတိုင်းပါပဲ။</p>
+
+<pre><code>&gt;&gt;&gt; print g(8)
+64  
+</code></pre>
+
+<p><code>g = lambda x</code> ဆိုတဲ့အထဲက x ကတော့ g(10) လို့ခေါ်ရင် x = 10 ဖြစ်သွားပါတယ်။ သူက function ကို parameter ထည့်ပေးတဲ့အခါသုံးတာပါ။ သုံးတာများသွားရင် သိသွားပါလိမ့်မယ်။ နောက်တစ်ခုအနေနဲ့ expression တစ်ခုပဲထည့်လို့ရတာကို အနောက်ကနေ ; semi-colon ခံပြီး နောက်တစ်ခုသွားထည့်လဲမရပါဘူး။</p>
+
+<p>ကျွန်တော်ရေးထားတဲ့ lambda example function တစ်ခုကိုပြပါမယ်။</p>
+
+<pre><code>&gt;&gt;&gt; sumTwo = lambda num: min(list(num)) + min([i for i in num if i != min(list(num))])
+</code></pre>
+
+<p><code>lambda num:</code> ဆိုတာ lambda function ကို define လုပ်ပြီး num ကတော့ function argument ကိုသိမ်းထားပေးမယ့် variable နာမည်ပါပဲ။</p>
+
+<p><code>min(list(num))</code> ဆိုတာ num ကိုအရင်ဆုံး list datatype အဖြစ်ပြောင်းမယ်။ နောက်ပြီးရင် <code>min()</code> ဆိုတဲ့ built-in function ကိုခေါ်သုံးပြီး အသေးဆုံး ဂဏန်းကို ထုတ်မယ်။</p>
+
+<p>+ ပေါင်းတာ</p>
+
+<p><code>min([i for i in num if i != min(list(num))])</code> ဆိုတာကို တစ်ဆင့်ချင်း ရှင်းပြပါ့မယ်။ <code>i for i in num</code> ဆိုတာ num ထဲမှာပါတဲ့ element တွေအားလုံးကို အသုံးချမယ်လို့ပြောတာ။ နောက်ပြီး <code>if i != min(list(num))</code> ဆိုတာတော့ တကယ်လို့ <code>i</code> က <code>min(list(num))</code> အသေးဆုံးကိန်းနဲ့ မတူတာပေါ့။ အရင်ဆုံး num ထဲကဟာကို အကုန်ထုတ်တယ် အသေးဆုံးကိန်းကလွဲရင် နောက်တစ်ဆင့်က min function ကိုပြန်ခေါ်လိုက်တယ်။ ဒုတိယအသေးဆုံးကို ပြန်ခေါ်ထုတ်တာပါ။ နောက်ပြီးတော့ တစ်ခါ ပထမ(အသေးဆုံးကိန်း)နဲ့ ဒုတိယ(အသေးဆုံးကိန်း) ကိုပေါင်းပြီး return ပြန်လုပ်တာပါ။</p>
+
+<p>ပုံမှန်အတိုင်းဆို အရင် sort လုပ်ပြီး ပထမတစ်ခုနဲ့ ဒုတိယတစ်ခုပေါင်းယုံပဲ။ ဒါပေမယ့် lambda ကတစ်ခုပဲလက်ခံတယ်လေ။ နောက်ပြီး <code>num.sort()</code> function က ဘာမှ return မလုပ်ပါဘူး။ သူ့နဂို list ကိုပဲ sort လုပ်လိုက်တာပါ။</p>
+
+<pre><code>&gt;&gt;&gt; sumTwo([5,8,12,19,22])
+13  
+&gt;&gt;&gt; sumTwo([15,28,4,2,43])
+6  
+</code></pre>
+
+<p>တကယ်လို့ statement ဒါမှမဟုတ် Expression က ဘာမှ return မလုပ်ရင် lambda မှာသုံးလို့မရပါဘူး။ None လို့ return လုပ်ရင်တောင် သုံးလို့ရပါတယ်။ ဘာ return လုပ်လဲသိချင်ရင် code ကို <code>type()</code> function နဲ့စစ်ကြည့်လို့ရပါတယ်။</p>
+
+<pre><code>&gt;&gt;&gt; num = [3,2,1]
+&gt;&gt;&gt; type(num.sort())
+&lt;type 'NoneType'&gt;  
+</code></pre>
+
+<p>Assignment statement (example <code>x=10</code>) ဆိုတာမျိုးက ဘာမှ return မလုပ်ပါဘူး။ None တောင် return မလုပ်ပါဘူး။ အဲဒီတော့ lambda မှာသုံးလို့မရပါဘူး။</p>
+
+<pre><code>&gt;&gt;&gt; x = lambda y: y = 10
+  File "&lt;stdin&gt;", line 1
+SyntaxError: can't assign to lambda  
+</code></pre>
+
+<p>Function call တွေကို lambda မှာသုံးလို့ရပါတယ်။ lambda ကနေတစ်ခါ တစ်ခြား function ကိုလှမ်းခေါ်တာပါ။  </p>
+
+<pre><code>lambda: a if some_contition() else b  
+</code></pre>
+
+<blockquote>
+  <p>Print က python 3.x version မှာဆိုရင် function call ဖြစ်သွားတာကြောင့် lambda မှာအသုံးပြုလို့ရပါတယ်။</p>
+</blockquote>
+
+<p>အကျယ်သိချင်ရင် reference ထဲက အောက်ဆုံးဟာကို ဝင်ဖတ်နိုင်ပါတယ်။ မသိတာ မရှင်းတာတွေလဲ မေးမြန်းနိုင်ပါတယ်။</p>
+
+<h5 id="reference">Reference</h5>
+
+<p><a href="http://www.secnetix.de/olli/Python/lambda_functions.hawk">http://www.secnetix.de/olli/Python/lambda_functions.hawk</a></p>
+
+<p><a href="https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/">https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/</a></p>
+
+<p><a href="http://stackoverflow.com/questions/890128/why-are-python-lambdas-useful">http://stackoverflow.com/questions/890128/why-are-python-lambdas-useful</a></p>
+
+<p>[https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda<em>tutorial/](https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda</em>tutorial/
+)</p>]]></content:encoded></item><item><title><![CDATA[Pickle VS Json]]></title><description><![CDATA[<h5 id="jsonjavascriptobjectnotation">JSON (JavaScript Object Notation)</h5>
 
 <p>JSON is a file format, and a markup language. First write the data into a <em>list</em> or <em>dictionary</em> (Note : Python's <strong>Dictionary</strong> datatype is equivalent of Javascript's Object notation). And it can be written into a json file with the similar formats</p>
 

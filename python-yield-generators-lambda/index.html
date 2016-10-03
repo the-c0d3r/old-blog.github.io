@@ -1,0 +1,336 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Python Yield, Generators, Lambda</title>
+    <meta name="description" content="Generators, python, yield, lambda">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=90abfaad7c">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://p.umputun.com/python-yield-generators-lambda/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Code-Lab">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Python Yield, Generators, Lambda">
+    <meta property="og:description" content="Generators, python, yield, lambda">
+    <meta property="og:url" content="http://p.umputun.com/python-yield-generators-lambda/">
+    <meta property="article:published_time" content="2016-10-03T01:04:10.873Z">
+    <meta property="article:modified_time" content="2016-10-03T01:06:56.981Z">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Programming">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Python Yield, Generators, Lambda">
+    <meta name="twitter:description" content="Generators, python, yield, lambda">
+    <meta name="twitter:url" content="http://p.umputun.com/python-yield-generators-lambda/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="zerouplink">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Python, Programming">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Code-Lab",
+        "logo": "http://p.umputun.com/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "zerouplink",
+        "url": "http://p.umputun.com/author/zerouplink/",
+        "sameAs": []
+    },
+    "headline": "Python Yield, Generators, Lambda",
+    "url": "http://p.umputun.com/python-yield-generators-lambda/",
+    "datePublished": "2016-10-03T01:04:10.873Z",
+    "dateModified": "2016-10-03T01:06:56.981Z",
+    "keywords": "Python, Programming",
+    "description": "Generators, python, yield, lambda"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.8">
+    <link rel="alternate" type="application/rss+xml" title="Code-Lab" href="http://p.umputun.com/rss/">
+</head>
+<body class="post-template tag-python tag-programming nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://the-c0d3r.github.io">Home</a></li>
+            <li class="nav-programming" role="presentation"><a href="http://the-c0d3r.github.io/tag/programming/">Programming</a></li>
+            <li class="nav-python" role="presentation"><a href="http://the-c0d3r.github.io/tag/python">Python</a></li>
+            <li class="nav-linux" role="presentation"><a href="http://the-c0d3r.github.io/tag/linux">Linux</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://p.umputun.com/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-python tag-programming">
+
+        <header class="post-header">
+            <h1 class="post-title">Python Yield &amp; Generators &amp; Lambda</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-10-03">03 October 2016</time>  on <a href="../tag/python/">Python</a>, <a href="../tag/programming/">Programming</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>Generators, lambda တွေနဲ့ yield တွေကတော့ နည်းနည်း advance ဖြစ်တဲ့ subtopic တွေဖြစ်သွားပါပြီ။ ဒီတော့ python basic ရသွားမှ နားလည်ရလွယ်မှာပါ။ Generator တွေဆိုတာ python object တစ်ခုဖြစ်ပြီး yield ကတော့ generator တွေနဲ့ တွဲသုံးလေ့ရှိတဲ့ statement တစ်မျိုးပါ။</p>
+
+<h3 id="generators">Generators</h3>
+
+<p>Generators တွေကို အလွယ်ပြောရရင် item လေးတွေထုတ်ပေးဖို့ object တစ်မျိုးပါပဲ။ Generator တွေကို အသုံးပြုမယ်ဆိုရင် Generator function ရေးရပါမယ်။ Generator function ကတော့ တစ်ခြားမဟုတ်ပါဘူး။ ဘယ် def မဆို yield statement ပါလို့ရှိရင် အဲဒါ generator function လို့ခေါ်တာပါပဲ။ <br>
+နောက်ပြီးတော့ အဲဒီလို function တွေက တစ်ခါ Generator iterator ဒါမှမဟုတ် တခြားနာမည်တစ်ခုဆိုရင် generator object တွေထုတ်ပေးပါတယ်။ (Iterator ကိုတော့ သိပြီးပြီလို့ ထင်ပါတယ်။ Basic မှာအဲဒါတွေအရမ်းသုံးရတယ်လေ။) Generator ပစ္စည်းတွေမှန်သမျှက next() ဆိုတဲ့ built-in function ပါပါတယ်။ အဲဒီကောင်လေးတွေကတော့ Generator တွေထဲကထုတ်ပေးတဲ့ နောက်ထပ် item တစ်ခုကို လှမ်းခေါ်လိုက်တဲ့သဘောပါပဲ။</p>
+
+<p>Example တွေကို ကြည့်လိုက်ရင် သဘောပေါက်ပါလိမ့်မယ်။ <br>
+အရင်ဆုံး Generator function တစ်ခုတည်ဆောက်ပါမယ်။</p>
+
+<pre><code>def simple_generator():  
+    for i in range(1,11):
+        yield i
+</code></pre>
+
+<p>ဒါကတော့ function define လုပ်ပြီးသွားပါပြီ။ ဒါဆို ပြောစရာဖြစ်လာတယ်။ 1 ကနေ 10 အထိ generate လုပ်တာများ အောက်ကလိုလဲရတာပဲဥစ္စာ။</p>
+
+<p><code>numList = [i for i in range(1,11)]</code></p>
+
+<p>အမေး: ဘာလို့များ function တစ်ခုထပ်ဆောက်ပြီး လုပ်ရတာလဲ?</p>
+
+<p>အဖြေ: အဲဒီလို numList Define လုပ်လိုက်ရင် Variable က RAM မှာ 1 ကနေ 10 အထိသွားသိမ်းပါလိမ့်မယ်။ နံပတ်နည်းရင် ပြဿနာမရှိပေမယ့် နံပတ်က အရမ်းကြီးသွားရင် RAM မှာအများကြီးသွားစားမယ်လေ။</p>
+
+<p>အမေး: ဪ ဒါဆို Generator object ကရော RAM မစားဘူးပေါ့?</p>
+
+<p>အဖြေ: မစားတာမဟုတ်ပါဘူး။ စားပါတယ်။ ဒါပေမယ့် အရမ်းနည်းတာပေါ့။ အောက်က Example ကိုကြည့်ပါ။</p>
+
+<p><code>numList = [i for i in range(1000) if i%2 == 0]</code></p>
+
+<p>ဒီလိုလုပ်ရင် CPU ကတစ်ခါထဲ 1 ကနေ 1000 အထိ တစ်ခုချင်းစီသွားပြီး စုံကိန်းဖြစ်မဖြစ်ကို တန်းပြီး တွက်ချက်ပြီး သိမ်းရပါမယ်။ Generator အားသာချက်က လိုအပ်မှပဲ တွက်ချက်ပြီး ထုတ်ပေးလိုက်တာပဲ။ အဲဒီကုဒ်ကို Generator နဲ့ရေးကြည့်မယ်။</p>
+
+<pre><code>def gen_even_num():  
+    for i in range(1000):
+        if i%2 == 0:
+            yield i
+
+num = gen_even_num()  
+num.next()  
+num.next()  
+</code></pre>
+
+<p>ဒီလိုဆိုရင် သူက <code>num.next()</code> ခေါ်လိုက်မှ function ကို execute လုပ်ပြီး စုံကိန်းကို ပြန် yield လုပ်ပေးတာပါ။ <code>num.next()</code> က python 2.x ဗားရှင်းမှာ ရေးနည်းပါ။ ဗားရှင်း 3 မှာဆိုရင် <code>next(num)</code> ဆိုပြီး လုပ်ရပါတယ်။</p>
+
+<p>နောက်ပြီး generator function နဲ့ သာမှန် function မတူတာတစ်ချက်က သာမှန် function ဆိုရင် function ကို execute လုပ်ပြီးရင် သူ့အထဲမှာရှိတဲ့ local variable ရဲ့တန်ဖိုးတွေအားလုံးကို မေ့ပစ်လိုက်တယ်။ ဒါပေမယ့် generator function တွေမှာတော့ အဲဒီလိုမဟုတ်ဘူး။ သူက မှတ်ထားသေးတယ်။ အဲဒါကြောင့် ဒီလို next() နဲ့ခေါ်လို့ရတာပါ။</p>
+
+<p>အောက်မှာတော့ memory profile လုပ်ထားတာကို ပြပါမယ်။
+<img src="http://i.imgur.com/FqYOXrS.png" alt=""></p>
+
+<h5 id="normalfunctioncode">Normal function code</h5>
+
+<pre><code>from memory_profiler import profile  
+import time
+
+@profile
+def my_func():  
+    num = [i for i in range(100000) if i%2 == 0]
+
+if __name__ == "__main__":  
+    start = time.time()
+    my_func()
+    end = time.time()
+    print"Duration : %f" % (float(end)-float(start))
+</code></pre>
+
+<h5 id="generatorfunctioncode">Generator function code</h5>
+
+<pre><code>from memory_profiler import profile  
+import time
+
+
+def generator_func():  
+    for i in range(100000):
+        if i%2 == 0:
+            yield i
+
+@profile
+def main():  
+    num = []
+    for value in generator_func():
+        num.append(value)
+
+if __name__ == "__main__":  
+    start = time.time()
+    main()
+    end = time.time()
+    print"Duration : %f" % (float(end)-float(start))
+</code></pre>
+
+<p>Memory ကွာဟချက်လေးနဲ့ duration ကွာဟချက်လေးက သိပ်တော့မကွာပါဘူး။ ဒါပေမယ့် generator က လိုမှသုံးတဲ့နေရာမှာ အသုံးတည့်တယ်။ နောက်ပြီး item ဘယ်လောက်လိုလဲ အတိအကျမသိတဲ့ case မှာဆို လိုသလောက် ထုတ်သုံးယုံပဲ။</p>
+
+<h3 id="lambda">Lambda (λ)</h3>
+
+<p>Lambda ဆိုတာ Radioactive Decay ကိုတွက်ချက်ရင်သုံးတဲ့ constant မဟုတ်ပါဘူး။ python မှာဆို တစ်ခြား အဓိပ္ပာယ်ရှိပါတယ်။ lambda ဆိုတာ mini-function လေးတွေ ဒါမှမဟုတ် function on-the-fly / on-the-run ပါ။ code statement လေးတွေကလဲ တစ်ကြောင်းထဲရှိသောအခါမျိုးမှာ ကိုယ်ကလဲ နောက်ထပ်သုံးချင်တယ်၊ ဒါပေမယ့် def လဲမရေးချင်ဘူး။ ဒါဆို lambda သုံးလို့ရပါပြီ။</p>
+
+<p><code>&gt;&gt;&gt; def f(x): return x**2</code></p>
+
+<p>f ဆိုတဲ့ function ကခေါ်လိုက်ရင် ထည့်လိုက်တဲ့ argument ကို power 2 တင်ပြီး ပြန်ထုတ်ပေးမှာပါ။</p>
+
+<pre><code>&gt;&gt;&gt; print f(8)
+64  
+</code></pre>
+
+<p>ဒါဆို lambda နဲ့ရေးကြည့်ရအောင်။ အရင်ဆုံး lambda မှာ return statement မလိုပါဘူး။ သူက နဂိုထဲက auto return လုပ်ပါတယ်။ ဒါသိရင် စရေးလို့ရပါပြီ။</p>
+
+<p><code>&gt;&gt;&gt; g = lambda x: x**2</code></p>
+
+<p>code ကိုခွဲခြမ်းကြည့်ရင် g ဆိုတာ variable define လုပ်တာနဲ့ အတော်ကိုတူပါတယ်။ ဒါပေမယ့် lambda ပါနေတဲ့အတွက် သူ့ကို variable လို့သတ်မှတ်လို့မရပါဘူး။ ပြန်ခေါ်မယ်ဆိုရင် function ခေါ်တဲ့အတိုင်းပါပဲ။</p>
+
+<pre><code>&gt;&gt;&gt; print g(8)
+64  
+</code></pre>
+
+<p><code>g = lambda x</code> ဆိုတဲ့အထဲက x ကတော့ g(10) လို့ခေါ်ရင် x = 10 ဖြစ်သွားပါတယ်။ သူက function ကို parameter ထည့်ပေးတဲ့အခါသုံးတာပါ။ သုံးတာများသွားရင် သိသွားပါလိမ့်မယ်။ နောက်တစ်ခုအနေနဲ့ expression တစ်ခုပဲထည့်လို့ရတာကို အနောက်ကနေ ; semi-colon ခံပြီး နောက်တစ်ခုသွားထည့်လဲမရပါဘူး။</p>
+
+<p>ကျွန်တော်ရေးထားတဲ့ lambda example function တစ်ခုကိုပြပါမယ်။</p>
+
+<pre><code>&gt;&gt;&gt; sumTwo = lambda num: min(list(num)) + min([i for i in num if i != min(list(num))])
+</code></pre>
+
+<p><code>lambda num:</code> ဆိုတာ lambda function ကို define လုပ်ပြီး num ကတော့ function argument ကိုသိမ်းထားပေးမယ့် variable နာမည်ပါပဲ။</p>
+
+<p><code>min(list(num))</code> ဆိုတာ num ကိုအရင်ဆုံး list datatype အဖြစ်ပြောင်းမယ်။ နောက်ပြီးရင် <code>min()</code> ဆိုတဲ့ built-in function ကိုခေါ်သုံးပြီး အသေးဆုံး ဂဏန်းကို ထုတ်မယ်။</p>
+
+<p>+ ပေါင်းတာ</p>
+
+<p><code>min([i for i in num if i != min(list(num))])</code> ဆိုတာကို တစ်ဆင့်ချင်း ရှင်းပြပါ့မယ်။ <code>i for i in num</code> ဆိုတာ num ထဲမှာပါတဲ့ element တွေအားလုံးကို အသုံးချမယ်လို့ပြောတာ။ နောက်ပြီး <code>if i != min(list(num))</code> ဆိုတာတော့ တကယ်လို့ <code>i</code> က <code>min(list(num))</code> အသေးဆုံးကိန်းနဲ့ မတူတာပေါ့။ အရင်ဆုံး num ထဲကဟာကို အကုန်ထုတ်တယ် အသေးဆုံးကိန်းကလွဲရင် နောက်တစ်ဆင့်က min function ကိုပြန်ခေါ်လိုက်တယ်။ ဒုတိယအသေးဆုံးကို ပြန်ခေါ်ထုတ်တာပါ။ နောက်ပြီးတော့ တစ်ခါ ပထမ(အသေးဆုံးကိန်း)နဲ့ ဒုတိယ(အသေးဆုံးကိန်း) ကိုပေါင်းပြီး return ပြန်လုပ်တာပါ။</p>
+
+<p>ပုံမှန်အတိုင်းဆို အရင် sort လုပ်ပြီး ပထမတစ်ခုနဲ့ ဒုတိယတစ်ခုပေါင်းယုံပဲ။ ဒါပေမယ့် lambda ကတစ်ခုပဲလက်ခံတယ်လေ။ နောက်ပြီး <code>num.sort()</code> function က ဘာမှ return မလုပ်ပါဘူး။ သူ့နဂို list ကိုပဲ sort လုပ်လိုက်တာပါ။</p>
+
+<pre><code>&gt;&gt;&gt; sumTwo([5,8,12,19,22])
+13  
+&gt;&gt;&gt; sumTwo([15,28,4,2,43])
+6  
+</code></pre>
+
+<p>တကယ်လို့ statement ဒါမှမဟုတ် Expression က ဘာမှ return မလုပ်ရင် lambda မှာသုံးလို့မရပါဘူး။ None လို့ return လုပ်ရင်တောင် သုံးလို့ရပါတယ်။ ဘာ return လုပ်လဲသိချင်ရင် code ကို <code>type()</code> function နဲ့စစ်ကြည့်လို့ရပါတယ်။</p>
+
+<pre><code>&gt;&gt;&gt; num = [3,2,1]
+&gt;&gt;&gt; type(num.sort())
+&lt;type 'NoneType'&gt;  
+</code></pre>
+
+<p>Assignment statement (example <code>x=10</code>) ဆိုတာမျိုးက ဘာမှ return မလုပ်ပါဘူး။ None တောင် return မလုပ်ပါဘူး။ အဲဒီတော့ lambda မှာသုံးလို့မရပါဘူး။</p>
+
+<pre><code>&gt;&gt;&gt; x = lambda y: y = 10
+  File "&lt;stdin&gt;", line 1
+SyntaxError: can't assign to lambda  
+</code></pre>
+
+<p>Function call တွေကို lambda မှာသုံးလို့ရပါတယ်။ lambda ကနေတစ်ခါ တစ်ခြား function ကိုလှမ်းခေါ်တာပါ။  </p>
+
+<pre><code>lambda: a if some_contition() else b  
+</code></pre>
+
+<blockquote>
+  <p>Print က python 3.x version မှာဆိုရင် function call ဖြစ်သွားတာကြောင့် lambda မှာအသုံးပြုလို့ရပါတယ်။</p>
+</blockquote>
+
+<p>အကျယ်သိချင်ရင် reference ထဲက အောက်ဆုံးဟာကို ဝင်ဖတ်နိုင်ပါတယ်။ မသိတာ မရှင်းတာတွေလဲ မေးမြန်းနိုင်ပါတယ်။</p>
+
+<h5 id="reference">Reference</h5>
+
+<p><a href="http://www.secnetix.de/olli/Python/lambda_functions.hawk">http://www.secnetix.de/olli/Python/lambda_functions.hawk</a></p>
+
+<p><a href="https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/">https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/</a></p>
+
+<p><a href="http://stackoverflow.com/questions/890128/why-are-python-lambdas-useful">http://stackoverflow.com/questions/890128/why-are-python-lambdas-useful</a></p>
+
+<p>[https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda<em>tutorial/](https://pythonconquerstheuniverse.wordpress.com/2011/08/29/lambda</em>tutorial/
+)</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/zerouplink/">zerouplink</a></h4>
+
+                    <p>Read <a href="../author/zerouplink/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Python%20Yield%20%26%20Generators%20%26%20Lambda&amp;url=http://p.umputun.com/python-yield-generators-lambda/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://p.umputun.com/python-yield-generators-lambda/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://p.umputun.com/python-yield-generators-lambda/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev no-cover" href="../pickle-vs-json/">
+        <section class="post">
+            <h2>Pickle VS Json</h2>
+            <p>JSON (JavaScript Object Notation) JSON is a file format, and a markup language. First write the data into a…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://p.umputun.com">Code-Lab</a> © 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=90abfaad7c"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=90abfaad7c"></script>
+
+</body>
